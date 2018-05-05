@@ -9,4 +9,7 @@ BOOST_PYTHON_MODULE(hello) {
         .def(py::init<std::string>())
         .def("greet", &World::greet)
         .def("set", &World::set);
+    py::class_<Var>("Var", py::init<std::string>())
+        .def_readonly("name", &Var::name)
+        .def_readwrite("value", &Var::value);
 }
