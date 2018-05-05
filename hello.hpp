@@ -19,4 +19,33 @@ struct Var
     Var(std::string name) : name(name), value() {}
 };
 
+struct Num
+{
+    float value;
+    Num(float value): value(value) {}
+    float get() { return value; }
+    void set(float value) { this->value = value; }
+};
+
+struct Base
+{
+    virtual ~Base() {}
+    virtual std::string fun() = 0;
+};
+
+struct Derived : Base
+{
+    std::string fun() { return "Derived"; }
+};
+
+Base* factory() { return new Derived; }
+
+std::string doFunBase(Base* base) {
+    return base->fun();
+}
+
+std::string doFunDerived(Derived* derived) {
+    return derived->fun();
+}
+
 #endif
